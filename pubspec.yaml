@@ -1,0 +1,60 @@
+name: mina_pharma_task_movie
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.2 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # LOGIC PACKAGES
+  #------
+  # Service locator # for dependency injection ( DI )
+  get_it: ^7.2.0
+  # Bloc for state management
+  flutter_bloc: ^8.1.1
+  # Functional programming thingies
+  dartz: ^0.10.1
+  # Remote API
+  internet_connection_checker: ^1.0.0+1
+  http: ^0.13.5
+  # Local cache
+  shared_preferences: ^2.0.15
+
+  # UI PACKAGES
+  #-----
+  # texts
+  styled_text: ^6.0.0
+  animated_text_kit: ^4.2.2
+  google_fonts: ^3.0.1
+  kenburns_nullsafety: ^1.0.0
+  carousel_slider: ^4.0.0
+
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+
+# instead of that i use the google fonts package
+#  fonts:
+#    - family: Schyler
+#      fonts:
+#        - asset: fonts/Schyler-Regular.ttf
+#        - asset: fonts/Schyler-Italic.ttf
+#           style: italic
