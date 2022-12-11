@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mina_pharma_task_movie/features/films/presentation/widgets/home_page/carousal_films_highlights.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/fake_data_bank/fake_data_bank.dart';
+import '../../../../core/strings/strings.dart';
+import '../../../auth/presentation/pages/welcome_page.dart';
 import '../widgets/home_page/cat_widget.dart';
 import '../widgets/shared/film_widget.dart';
 import 'films_page.dart';
@@ -20,7 +23,7 @@ class HomePage extends StatelessWidget {
   Widget _buildBody(context) {
     return Column(
       children: [
-        _buildAppBar(),
+        _buildAppBar(context),
         const Expanded(
           flex: 50,
           child: CarousalFilmsHighlights(),
@@ -34,7 +37,7 @@ class HomePage extends StatelessWidget {
               children: [
                 _buildSectionHeading(
                   'Top Movies',
-                  () => Navigator.pushNamed(context, FilmsPage.id),
+                  () => Navigator.pushReplacementNamed(context, FilmsPage.id),
                 ),
                 _buildTopMovies(context),
                 // _buildSectionHeading('Most Popular', () {}),
@@ -47,17 +50,20 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildAppBar() {
+  Widget _buildAppBar(context) {
     return Padding(
       padding: EdgeInsets.only(top: 10, bottom: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-          Text('Hi, Belal'),
+          const Text('Movies'),
           IconButton(
             onPressed: () {
-              // TODO: logout with block listener
+              SharedPreferences.getInstance().then((prefs) {
+                prefs.remove(CURRENT_USER);
+                Navigator.pushReplacementNamed(context, WelcomePage.id);
+              });
             },
             icon: const Icon(Icons.logout),
           ),

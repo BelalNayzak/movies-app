@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mina_pharma_task_movie/features/auth/presentation/pages/signup_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../core/strings/strings.dart';
 import '../../../../core/widgets/my_app_temp.dart';
+import '../../../films/presentation/pages/home_page.dart';
 import '../widget/welcome/multi_color_styled_text.dart';
 
 class WelcomePage extends StatelessWidget {
   static const id = 'WelcomePage';
   @override
   Widget build(BuildContext context) {
+    SharedPreferences.getInstance().then((prefs) {
+      String? userString = prefs.getString(CURRENT_USER);
+      if (userString != null && userString.isNotEmpty) {
+        Navigator.pushReplacementNamed(context, HomePage.id);
+      }
+    });
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: _buildBody(context),
